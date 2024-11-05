@@ -19,7 +19,7 @@ export function Home() {
                     <Group
                         title={item}
                         onPress={() => setSelectedGroup(item)}
-                        isActive={selectedGroup === item}
+                        isActive={selectedGroup.toLowerCase() === item.toLowerCase()}
                     />
                 )}
                 horizontal

@@ -1,9 +1,10 @@
-import { Center, Heading } from "@gluestack-ui/themed";
+import { ScreenHeader } from "@components";
+import { VStack } from "@gluestack-ui/themed";
 
 export function History() {
     return (
-        <Center flex={1}>
-            <Heading color="$white">Histórico</Heading>
-        </Center>
+        <VStack flex={1}>
+            <ScreenHeader title="Histórico de Exercícios" />
+        </VStack>
     )
 }
