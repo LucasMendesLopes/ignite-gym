@@ -31,7 +31,7 @@ export const HomeHeader = () => {
                     color="$gray100"
                     fontSize="$md"
                 >
-                    Fulano de Tal
+                    Lucas Mendes Lopes
                 </Heading>
             </VStack>
 
