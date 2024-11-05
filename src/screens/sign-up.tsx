@@ -5,16 +5,19 @@ import {
     Text,
     Heading,
     KeyboardAvoidingView,
-    ScrollView,
+    ScrollView
 } from "@gluestack-ui/themed";
 
-import BackgroundImage from "@assets/background.png";
-import Logo from "@assets/logo.svg";
+import BackgroundImage from "@assets/background.png"
+import Logo from "@assets/logo.svg"
 import { Button, Input } from "@components";
 
-export function SignIn() {
+export function SignUp() {
     return (
-        <VStack flex={1} bg="$gray700">
+        <VStack
+            flex={1}
+            bg="$gray700"
+        >
             <Image
                 w="$full"
                 h={624}
@@ -29,7 +32,11 @@ export function SignIn() {
                 behavior="height"
             >
                 <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-                    <VStack flex={1} px="$10" pb="$16">
+                    <VStack
+                        flex={1}
+                        px="$10"
+                        pb="$16"
+                    >
                         <Center my="$24">
                             <Logo />
 
@@ -46,13 +53,15 @@ export function SignIn() {
                                 color="$gray100"
                                 mb="$4.5"
                             >
-                                Acesse sua conta
+                                Crie sua conta
                             </Heading>
 
                             <Center
                                 gap="$4"
                                 mb="$8"
                             >
+                                <Input placeholder="Nome" />
+
                                 <Input
                                     placeholder="E-mail"
                                     keyboardType="email-address"
@@ -63,30 +72,24 @@ export function SignIn() {
                                     placeholder="Senha"
                                     secureTextEntry
                                 />
+
+                                <Input
+                                    placeholder="Confirme sua senha"
+                                    secureTextEntry
+                                />
                             </Center>
 
-                            <Button title="Acessar" />
+                            <Button title="Criar e acessar" />
                         </Center>
 
-                        <Center
+                        <Button
+                            variant="outline"
+                            title="Voltar para o login"
                             mt="auto"
-                            gap="$3"
-                        >
-                            <Text
-                                color="$gray100"
-                                fontSize="$md"
-                            >
-                                Ainda não tem acesso?
-                            </Text>
-
-                            <Button
-                                variant="outline"
-                                title="Criar conta"
-                            />
-                        </Center>
+                        />
                     </VStack>
                 </ScrollView>
             </KeyboardAvoidingView>
         </VStack>
-    );
+    )
 }
