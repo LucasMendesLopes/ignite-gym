@@ -11,13 +11,18 @@ import {
 import BackgroundImage from "@assets/background.png"
 import Logo from "@assets/logo.svg"
 import { Button, Input } from "@components";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
+import { useNavigation } from "@react-navigation/native";
 
 export function SignUp() {
+    const navigation = useNavigation<AuthNavigatorRoutesProps>()
+
+    const handleGoBack = () => {
+        navigation.goBack()
+    }
+
     return (
-        <VStack
-            flex={1}
-            bg="$gray700"
-        >
+        <VStack flex={1}>
             <Image
                 w="$full"
                 h={624}
@@ -86,6 +91,7 @@ export function SignUp() {
                             variant="outline"
                             title="Voltar para o login"
                             mt="auto"
+                            onPress={handleGoBack}
                         />
                     </VStack>
                 </ScrollView>

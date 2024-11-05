@@ -7,7 +7,7 @@ import {
 import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from "./config/gluestack-ui.config"
 import { Loading } from '@components';
-import { SignIn } from '@screens';
+import { Routes } from "./src/routes"
 
 export default function App() {
   const [fonstLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold })
@@ -20,7 +20,7 @@ export default function App() {
         backgroundColor="transparent"
       />
 
-      {fonstLoaded ? <SignIn /> : <Loading />}
+      {fonstLoaded ? <Routes /> : <Loading />}
     </GluestackUIProvider>
   );
 }

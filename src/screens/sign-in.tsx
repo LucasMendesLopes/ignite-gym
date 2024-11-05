@@ -11,10 +11,18 @@ import {
 import BackgroundImage from "@assets/background.png";
 import Logo from "@assets/logo.svg";
 import { Button, Input } from "@components";
+import { useNavigation } from "@react-navigation/native";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 export function SignIn() {
+    const navigation = useNavigation<AuthNavigatorRoutesProps>()
+
+    const handleNewAccount = () => {
+        navigation.navigate("signUp")
+    }
+
     return (
-        <VStack flex={1} bg="$gray700">
+        <VStack flex={1}>
             <Image
                 w="$full"
                 h={624}
@@ -82,6 +90,7 @@ export function SignIn() {
                             <Button
                                 variant="outline"
                                 title="Criar conta"
+                                onPress={handleNewAccount}
                             />
                         </Center>
                     </VStack>
