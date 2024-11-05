@@ -5,7 +5,6 @@ import { TouchableOpacity, TouchableOpacityProps } from "react-native"
 type Props = TouchableOpacityProps
 
 export const ExerciseCard = ({ ...rest }: Props) => {
-
     return (
         <TouchableOpacity {...rest}>
             <HStack bg="$gray500" alignItems="center" p="$2" pr="$4" rounded="$md" >
