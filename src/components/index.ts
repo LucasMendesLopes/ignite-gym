@@ -6,6 +6,7 @@ import { HistoryCard } from "./history-card";
 import { Input } from "./input";
 import { Loading } from "./loading";
 import { ScreenHeader } from "./screen-header";
+import { UserPhoto } from "./user-photo";
 
 export {
   Button,
@@ -16,4 +17,5 @@ export {
   Input,
   Loading,
   ScreenHeader,
+  UserPhoto,
 };
