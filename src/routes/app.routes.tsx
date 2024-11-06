@@ -14,13 +14,13 @@ type AppRoutes = {
     profile: undefined;
 }
 
-export type AuthNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>
+export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>
 
 const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>();
 
 export function AppRoutes() {
     const { tokens } = gluestackUIConfig
-    const iconSize = tokens.space["6"]
+    const iconSize = tokens.space["8"]
 
     return (
         <Navigator screenOptions={{
@@ -33,7 +33,7 @@ export function AppRoutes() {
                 borderTopWidth: 0,
                 height: Platform.OS === "android" ? "auto" : 96,
                 paddingTop: tokens.space["6"],
-                paddingBottom: tokens.space["10"]
+                paddingBottom: tokens.space["6"]
             }
         }}
         >
