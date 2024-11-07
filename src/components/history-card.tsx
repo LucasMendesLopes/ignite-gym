@@ -9,6 +9,7 @@ export const HistoryCard = ({ }: Props) => {
             alignItems="center"
             px="$5"
             py="$4"
+            gap="$2"
             rounded="$md"
         >
             <VStack flex={1}>
@@ -17,6 +18,7 @@ export const HistoryCard = ({ }: Props) => {
                     fontFamily="$heading"
                     fontSize="$md"
                     textTransform="capitalize"
+                    numberOfLines={1}
                 >
                     Costas
                 </Heading>
