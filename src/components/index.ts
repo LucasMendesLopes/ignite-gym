@@ -6,6 +6,7 @@ import { HistoryCard } from "./history-card";
 import { Input } from "./input";
 import { Loading } from "./loading";
 import { ScreenHeader } from "./screen-header";
+import { ToastMessage } from "./toast-message";
 import { UserPhoto } from "./user-photo";
 
 export {
@@ -17,5 +18,6 @@ export {
   Input,
   Loading,
   ScreenHeader,
+  ToastMessage,
   UserPhoto,
 };

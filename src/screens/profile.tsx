@@ -1,6 +1,6 @@
-import { Button, Input, ScreenHeader, UserPhoto } from "@components";
-import { Center, Heading, Text, VStack } from "@gluestack-ui/themed";
-import { Alert, TouchableOpacity } from "react-native";
+import { Button, Input, ScreenHeader, ToastMessage, UserPhoto } from "@components";
+import { Center, Heading, Text, Toast, useToast, VStack } from "@gluestack-ui/themed";
+import { TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as ImagePicker from "expo-image-picker"
 import * as FileSystem from "expo-file-system"
@@ -8,6 +8,8 @@ import { useState } from "react";
 
 export function Profile() {
     const [userPhoto, setUserPhoto] = useState("https://github.com/LucasMendesLopes.png")
+
+    const toast = useToast()
 
     const handleSelectUserPhoto = async () => {
         try {
@@ -26,11 +28,35 @@ export function Profile() {
                 const photoInfo = (await FileSystem.getInfoAsync(photoUri)) as { size: number }
 
                 if (photoInfo.size && (photoInfo.size / 1024 / 1024) > 5) {
-                    return Alert.alert("Essa imagem é muito grande, escolha uma de até 5MB.")
+                    return toast.show({
+                        placement: "top",
+                        render: ({ id }) => (
+                            <ToastMessage
+                                id={id}
+                                title="Imagem muito grande"
+                                description="Essa imagem é muito grande, escolha uma de até 5MB."
+                                action="error"
+                                onClose={() => toast.close(id)}
+                            />
+                        )
+                    })
                 }
             }
 
             setUserPhoto(photoUri)
+
+            toast.show({
+                placement: "top",
+                render: ({ id }) => (
+                    <ToastMessage
+                        id={id}
+                        title="Alteração de foto"
+                        description="Foto alterada com sucesso"
+                        action="success"
+                        onClose={() => toast.close(id)}
+                    />
+                )
+            })
         } catch (error) {
             console.log('error :>> ', error);
         }
