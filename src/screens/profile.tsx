@@ -1,9 +1,41 @@
 import { Button, Input, ScreenHeader, UserPhoto } from "@components";
 import { Center, Heading, Text, VStack } from "@gluestack-ui/themed";
-import { TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as ImagePicker from "expo-image-picker"
+import * as FileSystem from "expo-file-system"
+import { useState } from "react";
 
 export function Profile() {
+    const [userPhoto, setUserPhoto] = useState("https://github.com/LucasMendesLopes.png")
+
+    const handleSelectUserPhoto = async () => {
+        try {
+            const selectedPhoto = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                quality: 1,
+                aspect: [4, 4],
+                allowsEditing: true
+            })
+
+            if (selectedPhoto.canceled) return null
+
+            const photoUri = selectedPhoto.assets[0].uri
+
+            if (photoUri) {
+                const photoInfo = (await FileSystem.getInfoAsync(photoUri)) as { size: number }
+
+                if (photoInfo.size && (photoInfo.size / 1024 / 1024) > 5) {
+                    return Alert.alert("Essa imagem é muito grande, escolha uma de até 5MB.")
+                }
+            }
+
+            setUserPhoto(photoUri)
+        } catch (error) {
+            console.log('error :>> ', error);
+        }
+    }
+
     return (
         <VStack flex={1}>
             <ScreenHeader title="Perfil" />
@@ -16,9 +48,12 @@ export function Profile() {
                 extraScrollHeight={20}
             >
                 <Center mt="$6" px="$10">
-                    <UserPhoto source={{ uri: "https://github.com/LucasMendesLopes.png" }} size="xl" />
+                    <UserPhoto source={{ uri: userPhoto }} size="xl" />
 
-                    <TouchableOpacity style={{ marginTop: 12, marginBottom: 32 }}>
+                    <TouchableOpacity
+                        style={{ marginTop: 12, marginBottom: 32 }}
+                        onPress={handleSelectUserPhoto}
+                    >
                         <Text color="$green500" fontSize="$md" fontFamily="$heading">
                             Alterar foto
                         </Text>
